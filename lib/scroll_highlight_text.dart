@@ -1,7 +1,6 @@
 library scroll_highlight_text;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/helper/text_scroll_highlight_helper.dart';
+export 'src/highlighted_text_scrollable.dart';
+export 'src/styling/app_spacing.dart';
+export 'src/styling/app_styles.dart';

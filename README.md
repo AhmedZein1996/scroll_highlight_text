@@ -4,8 +4,6 @@ Flutter package that provides a widget for scrolling through text while highligh
 
 ## Features
 
-- **HighlightedTextScrollable**: A widget that allows scrolling through text while highlighting specific words or phrases.
-- **TextScrollHighlightHelper**: Utilities to assist in managing and highlighting text within the `HighlightedTextScrollable` widget.
 
 ## Getting Started
 
@@ -28,9 +26,11 @@ HighlightedTextScrollable(
   text: content,
 )
 
-To highlight and scroll to specific words within the text, you can use the TextScrollHighlightHelper.scrollToHighlightedText method.
+To highlight and scroll to specific words within the text, you can use the TextScrollHighlight.scrollToHighlightedText method.
 
 ## Example 
+
+Here are small examples that show you how to use the API.
 
 import 'package:flutter/material.dart';
 import 'package:scroll_highlight_text/scroll_highlight_text.dart';
