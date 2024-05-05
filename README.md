@@ -1,32 +1,23 @@
 # Scroll Highlight Text
 
-Flutter package that provides a widget for scrolling through text while highlighting specific words or phrases.
+Flutter package for highlighting and scrolling through text.
 
-## Features
+![example.gif](https://github.com/AhmedZein1996/scroll_highlight_text/blob/main/example.gif)
 
-
-## Getting Started
-
+## Usage
 To use this package in your Flutter project,
-1. add scroll_highlight_text as a dependency in your `pubspec.yaml` file:
-dependencies:
-  flutter:
-    sdk: flutter
-  scroll_highlight_text: ^1.0.0
-
+1. add scroll_highlight_text as a dependency in your `pubspec.yaml`
 2. Then, import the package in your Dart code:
 import 'package:scroll_highlight_text/scroll_highlight_text.dart';
 
-## Usage
-
-To use the `HighlightedTextScrollable` widget, simply pass your text to it:
+3. simply pass your text to `HighlightedTextScrollable` widget:
 
 ```dart
 HighlightedTextScrollable(
   text: content,
 )
 
-To highlight and scroll to specific words within the text, you can use the TextScrollHighlight.scrollToHighlightedText method.
+4. To highlight and scroll to specific words within the text, you can use the TextScrollHighlight.scrollToHighlightedText method.
 
 ## Example 
 
@@ -89,8 +80,19 @@ class HomeScreen extends StatelessWidget {
 }
 
 
-## Additional information
+### Additional Information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+To learn more about this package and its functionalities, you can visit the [GitHub repository](https://github.com/AhmedZein1996/scroll_highlight_text).
+
+Contributions to the package are welcome! You can contribute by forking the repository, making your changes, and submitting a pull request. For any issues or feature requests, please feel free to open an issue on the GitHub repository.
+
+For more information about using this package or for troubleshooting, you can contact the package authors through the GitHub repository's issue tracker.
+
+### Parameters
+
+- `text`: The text content to be displayed and scrolled through.
+- `highlightedTextStyle`: The text style applied to highlighted words or phrases.
+- `unHighlightedTextStyle`: The text style applied to the rest of the text.
+- `padding`: The padding around the text widget.
+- `durationOfScroll`: The duration of the scrolling animation.
+- `animationCurveOfScroll`: The animation curve used for scrolling transitions.
