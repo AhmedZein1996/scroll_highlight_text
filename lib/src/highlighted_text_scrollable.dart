@@ -11,19 +11,19 @@ class HighlightedTextScrollable extends StatefulWidget {
   final String text;
   final TextStyle highlightedTextStyle;
   final TextStyle unHighlightedTextStyle;
-  final double horizontalPadding;
-  final double verticalPadding;
+  final EdgeInsetsGeometry padding;
   final Duration durationOfScroll;
   final Curve animationCurveOfScroll;
 
   HighlightedTextScrollable({
     required this.text,
-    this.horizontalPadding = AppSpacing.defaultPadding,
-    this.verticalPadding = AppSpacing.zero,
     this.durationOfScroll = const Duration(milliseconds: 400),
     this.animationCurveOfScroll = Curves.ease,
     this.highlightedTextStyle = AppStyles.highlightedTextStyle,
     this.unHighlightedTextStyle = AppStyles.unHighlightedTextStyle,
+    this.padding = const EdgeInsets.symmetric(
+        horizontal: AppSpacing.defaultPadding,
+        vertical: AppSpacing.mediumPadding),
   }) : super(key: scrollToHighlightedTextGlobalKey);
 
   @override
@@ -38,9 +38,10 @@ class HighlightedTextScrollableState extends State<HighlightedTextScrollable> {
   @override
   void initState() {
     super.initState();
-    TextScrollHighlightHelper.initCurrentState(
-        scrollToHighlightedTextGlobalKey);
-    textSpans = TextScrollHighlightHelper.initTextSpans(widget.text);
+
+    textSpans = InitTextScrollHighlightHelper(
+            scrollToHighlightedTextGlobalKey.currentState)
+        ._initTextSpans(widget.text);
   }
 
   void applyHighlightedText(final List<TextSpan> spans) {
@@ -52,10 +53,7 @@ class HighlightedTextScrollableState extends State<HighlightedTextScrollable> {
   Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: widget.horizontalPadding,
-          vertical: widget.verticalPadding,
-        ),
+        padding: widget.padding,
         controller: scrollController,
         child: RichText(
           textAlign: TextAlign.justify,
@@ -65,5 +63,20 @@ class HighlightedTextScrollableState extends State<HighlightedTextScrollable> {
         ),
       ),
     );
+  }
+}
+
+class InitTextScrollHighlightHelper extends TextScrollHighlightHelper {
+  final HighlightedTextScrollableState? _keyCurrentState;
+  InitTextScrollHighlightHelper(this._keyCurrentState)
+      : super(_keyCurrentState);
+  List<TextSpan> _initTextSpans(String text) {
+    List<String> parts = text.split(' ');
+    return parts.map((part) {
+      return TextSpan(
+        text: '$part ',
+        style: _keyCurrentState!.widget.unHighlightedTextStyle,
+      );
+    }).toList();
   }
 }
