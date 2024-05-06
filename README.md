@@ -2,7 +2,7 @@
 
 Flutter package for highlighting and scrolling through text.
 
-![example.gif](https://github.com/AhmedZein1996/scroll_highlight_text/blob/main/example.gif)
+![example.gif](https://github.com/AhmedZein1996/scroll_highlight_text/raw/main/example.gif)
 
 ## Usage
 To use this package in your Flutter project,
