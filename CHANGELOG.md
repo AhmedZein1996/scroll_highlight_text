@@ -9,7 +9,6 @@
 ## 0.0.3
 
 - Fix bug related to empty searched text not being handled properly.
-- Refactor code for improved readability and maintainability.
 
 ## 0.0.4
 
@@ -18,3 +17,7 @@
 - ## 0.0.5
 
 - Update metadata.
+
+- ## 0.0.6
+
+- Refactor code for improved readability and maintainability.
