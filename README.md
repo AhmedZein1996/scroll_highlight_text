@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
               HighlightedTextScrollable(
                 text: content,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 50),
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               ),
             ],
           ),
