@@ -21,3 +21,7 @@
 - ## 0.0.6
 
 - Refactor code for improved readability and maintainability.
+
+- ## 0.0.7
+
+- Update provided example.
