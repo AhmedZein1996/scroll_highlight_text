@@ -14,3 +14,7 @@
 ## 0.0.4
 
 - Update provided example.
+
+- ## 0.0.5
+
+- Update metadata.
