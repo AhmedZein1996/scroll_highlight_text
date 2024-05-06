@@ -1,5 +1,12 @@
+## 0.0.1
+
+- Initial release.
+
 ## 0.0.2
 
-- Initial release of the `scroll_highlight_text` package.
-    - Provides a widget called `HighlightedTextScrollable` that allows scrolling through text while highlighting specific words or phrases.
-    - Includes utilities like `TextScrollHighlightHelper` to assist in managing and highlighting text within the widget.
+- Update metadata.
+
+## 0.0.3
+
+- Fix bug related to empty searched text not being handled properly.
+- Refactor code for improved readability and maintainability.

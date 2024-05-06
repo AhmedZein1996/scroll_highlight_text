@@ -5,57 +5,60 @@ import '../styling/app_spacing.dart';
 
 class TextScrollHighlight {
   static void scrollToHighlightedText(String inputText) {
-    final keyCurrentState = scrollToHighlightedTextGlobalKey.currentState;
+    final keyCurrentState = _getKeyCurrentState();
     if (keyCurrentState == null) return;
+
+    if (inputText.isEmpty) {
+      keyCurrentState.applyHighlightedText([]);
+      return;
+    }
 
     final regex = RegExp(inputText.trim(), caseSensitive: false);
     final matches = regex.allMatches(keyCurrentState.widget.text.toLowerCase());
-    final textSpans = TextScrollHighlightHelper._highlightSearchedText(
-        keyCurrentState, regex, matches);
-    keyCurrentState.applyHighlightedText(textSpans.isEmpty
-        ? TextScrollHighlightHelper._initTextSpans(keyCurrentState.widget.text)
-        : textSpans);
+    final textSpans =
+        TextScrollHighlightHelper._highlightSearchedText(regex, matches);
+    keyCurrentState.applyHighlightedText(textSpans);
 
     if (textSpans.isNotEmpty) {
       TextScrollHighlightHelper._scrollToWord(matches, textSpans.first.text);
     }
   }
+
+  static HighlightedTextScrollableState? _getKeyCurrentState() {
+    final keyCurrentState = scrollToHighlightedTextGlobalKey.currentState;
+    _setKeyCurrentState(keyCurrentState);
+    return keyCurrentState;
+  }
+
+  static _setKeyCurrentState(HighlightedTextScrollableState? keyCurrentState) {
+    if (keyCurrentState != null) {
+      TextScrollHighlightHelper._setKeyCurrentState();
+    }
+  }
 }
 
 class TextScrollHighlightHelper {
-  final HighlightedTextScrollableState? _highlightedTextScrollableState;
-  static HighlightedTextScrollableState? _currentState;
-  TextScrollHighlightHelper(this._highlightedTextScrollableState) {
-    _currentState = _highlightedTextScrollableState;
-  }
+  static late HighlightedTextScrollableState _currentState;
 
-  static List<TextSpan> _initTextSpans(String text) {
-    List<String> parts = text.split(' ');
-    return parts.map((part) {
-      return TextSpan(
-        text: '$part ',
-        style: _currentState!.widget.unHighlightedTextStyle,
-      );
-    }).toList();
+  static _setKeyCurrentState() {
+    _currentState = scrollToHighlightedTextGlobalKey.currentState!;
   }
 
   static List<TextSpan> _highlightSearchedText(
-      HighlightedTextScrollableState currentState,
-      RegExp regex,
-      Iterable<RegExpMatch> matches) {
+      RegExp regex, Iterable<RegExpMatch> matches) {
     if (matches.isEmpty) return [];
 
     List<TextSpan> spans = [];
-    List<String> parts = currentState.widget.text.split(regex);
+    List<String> parts = _currentState.widget.text.split(regex);
     for (int i = 0; i < parts.length; i++) {
       spans.add(TextSpan(
         text: parts[i],
-        style: currentState.widget.unHighlightedTextStyle,
+        style: _currentState.widget.unHighlightedTextStyle,
       ));
       if (i < parts.length - 1) {
         spans.add(TextSpan(
-          text: regex.stringMatch(currentState.widget.text),
-          style: currentState.widget.highlightedTextStyle,
+          text: regex.stringMatch(_currentState.widget.text),
+          style: _currentState.widget.highlightedTextStyle,
         ));
       }
     }
@@ -64,22 +67,20 @@ class TextScrollHighlightHelper {
 
   static void _scrollToWord(
       Iterable<Match> matches, String? textBeforeFirstMatch) {
-    if (_currentState == null) return;
-
-    final textPainter = _getTextPainter(_currentState!);
+    final textPainter = _getTextPainter(_currentState);
     final numberOfCharactersInLine =
         _calculateNumberOfCharactersByScreenWidth(textPainter);
     final lineNumber =
         ((matches.first.start / numberOfCharactersInLine)).floor();
     final emptyLinesCount =
-        _countTextEmptyLines(_currentState!, textBeforeFirstMatch);
+        _countTextEmptyLines(_currentState, textBeforeFirstMatch);
     final offset = ((lineNumber + emptyLinesCount - AppSpacing.twoLines) *
             textPainter.height) +
-        _currentState!.widget.padding.vertical / 2;
-    _currentState!.scrollController.animateTo(
+        _currentState.widget.padding.vertical / 2;
+    _currentState.scrollController.animateTo(
       offset,
-      duration: _currentState!.widget.durationOfScroll,
-      curve: _currentState!.widget.animationCurveOfScroll,
+      duration: _currentState.widget.durationOfScroll,
+      curve: _currentState.widget.animationCurveOfScroll,
     );
   }
 
@@ -94,12 +95,10 @@ class TextScrollHighlightHelper {
 
   static int _calculateNumberOfCharactersByScreenWidth(
       TextPainter textPainter) {
-    if (_currentState == null) return 0;
-
-    final screenWidth = MediaQuery.of(_currentState!.context).size.width -
-        _currentState!.widget.padding.horizontal;
+    final screenWidth = MediaQuery.of(_currentState.context).size.width -
+        _currentState.widget.padding.horizontal;
     return ((screenWidth / textPainter.width)).floor() +
-        _getWhiteSpaceNumber(_currentState!);
+        _getWhiteSpaceNumber(_currentState);
   }
 
   static int _getWhiteSpaceNumber(HighlightedTextScrollableState currentState) {
