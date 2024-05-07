@@ -16,7 +16,7 @@ class TextScrollHighlight {
     final regex = RegExp(inputText.trim(), caseSensitive: false);
     final matches = regex.allMatches(keyCurrentState.widget.text);
     final textSpans =
-    TextScrollHighlightHelper._highlightSearchedText(regex, matches);
+        TextScrollHighlightHelper._highlightSearchedText(regex, matches);
     keyCurrentState.applyHighlightedText(textSpans);
 
     if (textSpans.isNotEmpty) {
@@ -68,9 +68,9 @@ class TextScrollHighlightHelper {
   static void _scrollToWord(
       Iterable<Match> matches, String? textBeforeFirstMatch) {
     final numberOfCharactersInLine =
-    _calculateNumberOfCharactersByScreenWidth();
+        _calculateNumberOfCharactersByScreenWidth();
     final lineNumber =
-    ((matches.first.start / numberOfCharactersInLine)).floor();
+        ((matches.first.start / numberOfCharactersInLine)).floor();
     final offset = _calculateOffset(lineNumber, textBeforeFirstMatch);
     _currentState.scrollController.animateTo(
       offset,
@@ -119,9 +119,9 @@ class TextScrollHighlightHelper {
         ? AppSpacing.twoLines
         : AppSpacing.threeLines;
     final offset = ((lineNumber +
-        _countTextEmptyLines(_currentState, textBeforeFirstMatch) -
-        defaultLines) *
-        _getTextPainter(_currentState).height) +
+                _countTextEmptyLines(_currentState, textBeforeFirstMatch) -
+                defaultLines) *
+            _getTextPainter(_currentState).height) +
         _currentState.widget.padding.vertical / 2;
     return offset;
   }

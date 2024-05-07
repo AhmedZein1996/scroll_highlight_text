@@ -3,7 +3,7 @@ import 'package:scroll_highlight_text/src/styling/app_spacing.dart';
 import 'package:scroll_highlight_text/src/styling/app_styles.dart';
 
 GlobalKey<HighlightedTextScrollableState> scrollToHighlightedTextGlobalKey =
-GlobalKey();
+    GlobalKey();
 
 class HighlightedTextScrollable extends StatefulWidget {
   final String text;
@@ -39,6 +39,12 @@ class HighlightedTextScrollableState extends State<HighlightedTextScrollable> {
   void initState() {
     super.initState();
     textSpans = _initTextSpans();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   void applyHighlightedText(final List<TextSpan> spans) {

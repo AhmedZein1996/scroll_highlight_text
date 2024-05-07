@@ -37,3 +37,7 @@
 ## 0.1.0 
 
 - Added support for Arabic text.
+
+## 0.1.1
+
+- Update Readme.md.
