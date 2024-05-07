@@ -14,22 +14,26 @@
 
 - Update provided example.
 
-- ## 0.0.5
+## 0.0.5
 
 - Update metadata.
 
-- ## 0.0.6
+## 0.0.6
 
 - Refactor code for improved readability and maintainability.
 
-- ## 0.0.7
+## 0.0.7
 
 - Update provided example.
 
-- ## 0.0.8
+## 0.0.8
 
 - Update metadata.
 
-- ## 0.0.9
+## 0.0.9
 
 - Update example.gif.
+
+## 0.1.0 
+
+- Added support for Arabic text.

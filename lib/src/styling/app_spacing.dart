@@ -5,4 +5,5 @@ class AppSpacing {
   static const defaultPadding = 16.0;
   static const zero = 0.0;
   static const twoLines = 2;
+  static const threeLines = 3;
 }

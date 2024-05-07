@@ -3,10 +3,11 @@ import 'package:scroll_highlight_text/src/styling/app_spacing.dart';
 import 'package:scroll_highlight_text/src/styling/app_styles.dart';
 
 GlobalKey<HighlightedTextScrollableState> scrollToHighlightedTextGlobalKey =
-    GlobalKey();
+GlobalKey();
 
 class HighlightedTextScrollable extends StatefulWidget {
   final String text;
+  final TextDirection textDirection;
   final TextStyle highlightedTextStyle;
   final TextStyle unHighlightedTextStyle;
   final EdgeInsetsGeometry padding;
@@ -15,6 +16,7 @@ class HighlightedTextScrollable extends StatefulWidget {
 
   HighlightedTextScrollable({
     required this.text,
+    this.textDirection = TextDirection.ltr,
     this.durationOfScroll = const Duration(milliseconds: 400),
     this.animationCurveOfScroll = Curves.ease,
     this.highlightedTextStyle = AppStyles.highlightedTextStyle,
@@ -61,14 +63,17 @@ class HighlightedTextScrollableState extends State<HighlightedTextScrollable> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        padding: widget.padding,
-        controller: scrollController,
-        child: RichText(
-          textAlign: TextAlign.justify,
-          text: TextSpan(
-            children: textSpans,
+    return Directionality(
+      textDirection: widget.textDirection,
+      child: Expanded(
+        child: SingleChildScrollView(
+          padding: widget.padding,
+          controller: scrollController,
+          child: RichText(
+            textAlign: TextAlign.justify,
+            text: TextSpan(
+              children: textSpans,
+            ),
           ),
         ),
       ),
