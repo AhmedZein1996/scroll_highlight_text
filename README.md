@@ -6,23 +6,24 @@ This Flutter package enables highlighting and scrolling through text content in 
 
 ## Usage
 To use this package in your Flutter project,
-1. add scroll_highlight_text as a dependency in your `pubspec.yaml`
+1. add `scroll_highlight_text` as a dependency in your `pubspec.yaml`
 2. Then, import the package in your Dart code:
-import 'package:scroll_highlight_text/scroll_highlight_text.dart';
+import `'package:scroll_highlight_text/scroll_highlight_text.dart';`
 
 3. simply pass your text to `HighlightedTextScrollable` widget:
 
-```dart
-HighlightedTextScrollable(
-  text: content,
-)
 
-4. To highlight and scroll to specific words within the text, you can use the TextScrollHighlight.scrollToHighlightedText method.
+`HighlightedTextScrollable(
+  text: content,
+)`
+
+4. To highlight and scroll to specific words within the text, you can use the `TextScrollHighlight.scrollToHighlightedText` method.
 
 ## Example 
 
 Here are small examples that show you how to use the API.
 
+```dart
 import 'package:flutter/material.dart';
 import 'package:scroll_highlight_text/scroll_highlight_text.dart';
 
@@ -82,6 +83,7 @@ Aenean vel ligula dolor. Mauris""";
 
 const String arabicContent = """Your arabic text
 """;
+```
 
 ## Additional Information
 
