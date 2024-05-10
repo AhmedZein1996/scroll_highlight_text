@@ -10,7 +10,7 @@ class HighlightedTextScrollable extends StatefulWidget {
   /// The text content to be displayed and scrolled through.
   final String text;
 
-  /// The controller of the text field where the user inputs the word to be searched.
+  /// The controller for the text field where the user inputs the search term.
   ///
   /// If [autoDisposeSearchController] is set to true (default), the controller
   /// will be disposed automatically when the widget is removed from the widget tree.

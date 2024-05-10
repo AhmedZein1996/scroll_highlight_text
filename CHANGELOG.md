@@ -81,3 +81,11 @@ The changes in version 0.1.2 include:
 - Updated `Readme.md`.
 
 - Updated example usage of the component.
+
+## 0.1.3
+
+- Updated `Readme.md`.
+
+## 0.1.4
+
+- Updated example usage of the component.

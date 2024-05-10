@@ -39,11 +39,10 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 HighlightedTextScrollable(
-                  text:
-                      englishContent, // if the text is Arabic pass arabicContent.
+                  text: englishContent,
                   searchController: controller,
-                  textDirection:
-                      TextDirection.rtl, // Add this line if the text is Arabic.
+                  // Add this line if the text is Arabic.
+                  // textDirection: TextDirection.rtl,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 ),

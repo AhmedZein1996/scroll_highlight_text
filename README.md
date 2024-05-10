@@ -9,11 +9,14 @@ To use this package in your Flutter project,
 1. add scroll_highlight_text as a dependency in your `pubspec.yaml`
 2. Then, import the package in your Dart code:
 import 'package:scroll_highlight_text/scroll_highlight_text.dart';
-3. simply pass your text to `HighlightedTextScrollable` widget:
+3. Assign the search controller to your TextField for user input.
+4. Simply pass your text and search controller to the `HighlightedTextScrollable` widget:
+```dart
 HighlightedTextScrollable(
-  text: content,
+text: content, // The text content to be displayed and scrolled through.
+searchController: controller, // The controller for the text field where the user inputs the search term.
 )
-4. To highlight and scroll to specific words within the text, you can use the TextScrollHighlight.scrollToHighlightedText method.
+```
 
 ## Example 
 
@@ -58,9 +61,10 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 HighlightedTextScrollable(
-                  text: englishContent, // if the text is Arabic pass arabicContent.
+                  text: englishContent,
                   searchController: controller,
-                  textDirection: TextDirection.rtl, // Add this line if the text is Arabic.
+                  // Add this line if the text is Arabic.
+                  // textDirection: TextDirection.rtl,
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 ),
               ],
