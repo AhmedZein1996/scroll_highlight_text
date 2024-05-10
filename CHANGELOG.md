@@ -41,3 +41,43 @@
 ## 0.1.1
 
 - Update Readme.md.
+
+## 0.1.2
+
+The changes in version 0.1.2 include:
+
+- Updated `HighlightedTextScrollable` to allow passing a search controller to it, eliminating the need for the unnecessary `onChanged` callback to make it self-contained:
+  
+  Old Code
+ ```dart
+      SearchBar(
+                  hintText: 'Start search',
+                  onChanged: (value) {
+                    TextScrollHighlight.scrollToHighlightedText(value);
+                  },
+                ),
+```  
+  
+```dart
+        HighlightedTextScrollable(
+                text: englishContent,
+             ),
+```
+
+  New Code
+```dart
+     SearchBar(
+                    hintText: 'Start search',
+                    controller: controller,
+                  ),
+ ```
+  
+```dart
+       HighlightedTextScrollable(
+                  text: englishContent, 
+                  searchController: controller,),
+ ```
+
+- Updated `Readme.md`.
+
+- Updated example usage of the component.

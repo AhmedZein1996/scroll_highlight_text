@@ -9,58 +9,68 @@ To use this package in your Flutter project,
 1. add scroll_highlight_text as a dependency in your `pubspec.yaml`
 2. Then, import the package in your Dart code:
 import 'package:scroll_highlight_text/scroll_highlight_text.dart';
-
 3. simply pass your text to `HighlightedTextScrollable` widget:
-
-```dart
 HighlightedTextScrollable(
   text: content,
 )
-
 4. To highlight and scroll to specific words within the text, you can use the TextScrollHighlight.scrollToHighlightedText method.
 
 ## Example 
 
 Here are small examples that show you how to use the API.
 
+```dart
 import 'package:flutter/material.dart';
 import 'package:scroll_highlight_text/scroll_highlight_text.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: SearchBar(
-                  hintText: 'Start search',
-                  onChanged: (value) {
-                    TextScrollHighlight.scrollToHighlightedText(value);
-                  },
+    return MaterialApp(
+      title: 'Scroll Highlight Text',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SearchBar(
+                    hintText: 'Start search',
+                    controller: controller,
+                  ),
                 ),
-              ),
-              HighlightedTextScrollable(
-                text: englishContent, // if the text is Arabic pass arabicContent.
-                textDirection: TextDirection.rtl, // Add this line if the text is Arabic.
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              ),
-            ],
+                HighlightedTextScrollable(
+                  text: englishContent, // if the text is Arabic pass arabicContent.
+                  searchController: controller,
+                  textDirection: TextDirection.rtl, // Add this line if the text is Arabic.
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
 const String englishContent =
     """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate auctor augue, vitae accumsan odio cursus a. Integer gravida luctus erat, id congue mi vehicula vel. Morbi at neque felis. In hac habitasse platea dictumst. Cras ultricies eros quis libero fringilla, eget convallis leo placerat. Vestibulum vitae odio sit amet lacus feugiat placerat. Nullam id consequat mauris. Maecenas vestibulum magna in vehicula tempor. Ut id dapibus mi. Donec at nisl risus. Quisque nec tortor sit amet nunc suscipit iaculis. Vivamus bibendum risus non magna gravida rutrum. Nulla facilisi. Sed hendrerit eget enim at eleifend.
 
@@ -82,6 +92,20 @@ Aenean vel ligula dolor. Mauris""";
 
 const String arabicContent = """Your arabic text
 """;
+```
+
+## Parameters
+
+- `text`: The text content to be displayed and scrolled through.
+- `searchController`: The controller of the text field where the user inputs the word to be searched.
+- `autoDisposeSearchController`: Auto dispose the [searchController] upon the destruction of the widget from the widget tree. Default is [true].
+- `textDirection`: Text Directions. `TextDirection.ltr` indicates that the text is laid out from left to right, which is the default direction for languages like English. `TextDirection.rtl` indicates that the text is laid out from right to left, which is the default direction for languages like Arabic and Hebrew.
+- `highlightedTextStyle`: The text style applied to highlighted words or phrases.
+- `unHighlightedTextStyle`: The text style applied to the rest of the text.
+- `padding`: The internal padding around the text widget. Padding should only be applied internally within this widget, not from external sources. If you want to apply custom internal padding, make sure to pass it to `HighlightedTextScrollable`. This ensures that the padding is considered during the calculation process.
+- `durationOfScroll`: The duration of the scrolling animation.
+- `animationCurveOfScroll`: The animation curve used for scrolling transitions.
+
 
 ## Additional Information
 
@@ -90,12 +114,3 @@ To learn more about this package and its functionalities, you can visit the [Git
 Contributions to the package are welcome! You can contribute by forking the repository, making your changes, and submitting a pull request. For any issues or feature requests, please feel free to open an issue on the GitHub repository.
 
 For more information about using this package or for troubleshooting, you can contact the package authors through the GitHub repository's issue tracker.
-
-## Parameters
-
-- `text`: The text content to be displayed and scrolled through.
-- `highlightedTextStyle`: The text style applied to highlighted words or phrases.
-- `unHighlightedTextStyle`: The text style applied to the rest of the text.
-- `padding`: The padding around the text widget.
-- `durationOfScroll`: The duration of the scrolling animation.
-- `animationCurveOfScroll`: The animation curve used for scrolling transitions.
