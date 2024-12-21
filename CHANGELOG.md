@@ -89,3 +89,8 @@ The changes in version 0.1.2 include:
 ## 0.1.4
 
 - Updated example usage of the component.
+
+## 1.0.0
+
+- Stable version release 
+

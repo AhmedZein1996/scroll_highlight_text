@@ -32,7 +32,7 @@ class TextScrollHighlight {
 
   static _setKeyCurrentState(HighlightedTextScrollableState? keyCurrentState) {
     if (keyCurrentState != null) {
-      TextScrollHighlightHelper._setKeyCurrentState();
+      TextScrollHighlightHelper._setKeyCurrentState(keyCurrentState);
     }
   }
 }
@@ -40,8 +40,9 @@ class TextScrollHighlight {
 class TextScrollHighlightHelper {
   static late HighlightedTextScrollableState _currentState;
 
-  static _setKeyCurrentState() {
-    _currentState = scrollToHighlightedTextGlobalKey.currentState!;
+  static _setKeyCurrentState(
+      HighlightedTextScrollableState highlightedTextScrollableState) {
+    _currentState = highlightedTextScrollableState;
   }
 
   static List<TextSpan> _highlightSearchedText(
